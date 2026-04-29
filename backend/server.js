@@ -6,16 +6,21 @@ const authRoutes = require("./routes/authRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
 
 dotenv.config();
+
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/resume", resumeRoutes);
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+app.get("/", (req, res) => res.send("API running..."));
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

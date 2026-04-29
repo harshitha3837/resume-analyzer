@@ -1,5 +1,5 @@
 const fs = require("fs");
-const Resume = require("../models/Resume");
+const Resume = require("../models/resume");
 const scoreResume = require("../utils/scoreResume");
 const classifyResume = require("../utils/resumeClassifier");
 
