@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/login.jsx";
 import Signup from "./pages/signup.jsx";
-import UploadResume from "./pages/UploadResume.jsx";
+import UploadResume from "./pages/uploadresume.jsx";
 import ReviewDashboard from "./pages/ReviewDashboard.jsx";
 
 function App() {
