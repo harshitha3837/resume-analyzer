@@ -53,7 +53,7 @@ const UploadResume = () => {
       data.append("experience", formData.experience);
       data.append("resume", file);
 
-      const res = await fetch("http://localhost:5000/api/resume/upload", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/resume/upload`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: data,
