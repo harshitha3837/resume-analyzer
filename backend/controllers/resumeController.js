@@ -1,12 +1,11 @@
-const fs = require("fs");
 const Resume = require("../models/resume");
 const scoreResume = require("../utils/scoreResume");
 const classifyResume = require("../utils/resumeClassifier");
 
-const extractResumeText = async (filePath) => {
+const extractResumeText = async (buffer) => {
   try {
     const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
-    const data = new Uint8Array(fs.readFileSync(filePath));
+    const data = new Uint8Array(buffer);
     const pdf = await pdfjsLib.getDocument({ data }).promise;
 
     let extractedText = "";
@@ -42,11 +41,11 @@ const createResume = async (req, res) => {
       });
     }
 
-    const resumeFile = req.file.path;
+    const resumeFile = req.file.originalname;
     let extractedText = "";
 
-    if (resumeFile) {
-      extractedText = await extractResumeText(resumeFile);
+    if (req.file.buffer) {
+      extractedText = await extractResumeText(req.file.buffer);
       console.log("Extracted Text Length:", extractedText.length);
     }
 
