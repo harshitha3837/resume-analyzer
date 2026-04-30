@@ -16,7 +16,7 @@ const ReviewDashboard = () => {
         console.log("Fetching resume ID:", id);
         console.log("Token:", token);
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/resume/dashboard`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/resume/${id}`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
 
